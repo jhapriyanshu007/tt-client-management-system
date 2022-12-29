@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="page-header">
+                  <div class="row align-items-center">
+                     <div class="col">
+                        <h3 class="page-title">Employee</h3>
+                        <ul class="breadcrumb">
+                           <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                           <li class="breadcrumb-item active">Employee</li>
+                        </ul>
+                     </div>
+                     <div class="col-auto text-right float-right ml-auto">
+                        <button class="btn btn-primary mr-2" data-toggle="modal" data-target=".bd-example-modal-lg" type="button"><i class="fas fa-pray"></i>&nbsp;&nbsp;Leave Apply History</button>
+                     </div>
+                  </div>
+               </div>
+
+            <div class="content container-fluid">
+               <div class="page-header">
+                  <div class="row align-items-center">
+                     <div class="col">
+                        <h3 class="page-title">Apply Leave</h3>
+                        <ul class="breadcrumb">
+                           <li class="breadcrumb-item"><a href="subjects.html">Leave</a></li>
+                           <li class="breadcrumb-item active">Apply Leave</li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="card">
+                        <div class="card-body">
+                           <form>
+                              <div class="row">
+                                 <div class="col-12">
+                                    <h5 class="form-title"><span>Leave</span></h5>
+                                 </div>
+                                 <div class="col-12 col-sm-15">
+                                    <div class="form-group">
+                                       <label>Leave Date</label>
+                                       <input type="date" class="form-control" name="leave_date" required>
+                                    </div>
+                                 </div>
+                                 <div class="col-12 col-sm-15">
+                                    <div class="form-group">
+                                       <label>Leave Reason</label>
+                                       <textarea class="form-control" name="leave_reason" style="height:200px" required></textarea>
+                                    </div>
+                                 </div>
+                                  <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                 </div>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+<!-- Large modal -->
+<button type="button" class="btn btn-primary" >Large modal</button>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+       <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Leave Apply History</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+       </div>
+       <div class="modal-body">
+          <div class="row">
+                  <div class="col-sm-12">
+                     <div class="card card-table">
+                        <div class="card-body">
+                           <div class="table-responsive">
+                              <table class="table table-hover table-center mb-0 datatable">
+                                 <thead>
+                                    <tr>
+                                       <th>ID</th>
+                                       <th>Employee ID</th>
+                                       <th>Name</th>
+                                       <th>Gender</th>
+                                       <th>DOB</th>
+                                       <th>Designation</th>
+                                       <th>Joining Date</th>
+                                       <th>Mobile</th>
+                                       <th>Email</th>
+                                       <th>Father Name</th>
+                                       <th>Father Mob</th>
+                                       <th>Father Occupation</th>
+                                       <th>Mother Name</th>
+                                       <th>Mother Occupation</th>
+                                       <th>Permanent ADD</th>
+                                       <th>Created AT</th>
+                                       <th>Updated AT</th>
+                                       <th class="text-right">Action</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                 {% for i in view %}
+                                    <tr>
+                                       <td>{{i.id}}</td>
+                                       <td>{{i.employee_id}}</td>
+                                       <td>
+                                          <h2 class="table-avatar">
+                                             <a href="student-details.html">{{i.admin.first_name}}&nbsp;{{i.admin.last_name}}</a>
+                                          </h2>
+                                       </td>
+                                       <td>{{i.gender}}</td>
+                                       <td>{{i.dob}}</td>
+                                       <td>{{i.designation}}</td>
+                                       <td>{{i.joining_date}}</td>
+                                       <td>{{i.mobile}}</td>
+                                       <td>{{i.email}}</td>
+                                       <td>{{i.father_name}}</td>
+                                       <td>{{i.father_mob}}</td>
+                                       <td>{{i.father_occupation}}</td>
+                                       <td>{{i.mother_name}}</td>
+                                       <td>{{i.mother_occupation}}</td>
+                                       <td>{{i.permanent_add}}</td>
+                                       <td>{{i.created_at}}</td>
+                                       <td>{{i.updated_at}}</td>
+                                       <td class="text-right">
+                                          <div class="actions">
+                                             <a href="{% url 'edit_fin' i.id %}" class="btn btn-sm bg-success-light mr-2">
+                                             <i class="fas fa-pen"></i>
+                                             </a>
+                                             <a href="{% url 'delete_fin' i.admin.id %}" class="btn btn-sm bg-danger-light">
+                                             <i class="fas fa-trash"></i>
+                                             </a>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                    {% endfor %}
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+       </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

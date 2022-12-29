@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="content container-fluid">
+               <div class="page-header">
+                  <div class="row align-items-center">
+                     <div class="col">
+                        <h3 class="page-title">Received Notification</h3>
+                        <ul class="breadcrumb">
+                           <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                           <li class="breadcrumb-item active">Notification</li>
+                        </ul>
+                     </div>
+                     {% include 'includes/messages.html' %}
+                     <div class="col-auto text-right float-right ml-auto">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                            View All Notifications
+                         </button>
+
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="card card-table">
+                        <div class="card-body">
+                           <div class="table-responsive">
+                              <table class="table table-hover table-center mb-0 datatable">
+                                 <thead>
+                                    <tr>
+                                       <th>Message</th>
+                                       <th class="text-right">Action</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                 {% for i in see_sale_notification %}
+                                    <tr>
+                                       <td>{{i.message}}</td>
+                                       <td class="text-right">
+                                          <div class="action">
+                                             {% if i.status == 0 %}
+                                              <a href="{% url 'sale_mark_as_done' status=i.id %}" class="btn btn-danger">Mark As Done</a>
+                                             {% else %}
+                                              <button class="btn btn-danger" disabled="disabled">Mark As Done</button>
+                                             {% endif %}
+                                          </div>
+                                       </td>
+                                    </tr>
+                                    {% endfor %}
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+{% endblock %}

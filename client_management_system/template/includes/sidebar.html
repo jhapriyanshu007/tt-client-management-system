@@ -1,0 +1,169 @@
+{% load static %}
+{% load active_link_tags %}
+
+<div class="sidebar" id="sidebar">
+            <div class="sidebar-inner slimscroll">
+               <div id="sidebar-menu" class="sidebar-menu">
+                  {% if user.user_type == '1' %}
+                  <ul>
+                     <li class="menu-title">
+                        <span>Main Menu</span>
+                     </li>
+                     <li class="{% active_link 'hod_home' 'active' %}">
+                        <a href="{% url 'hod_home' %}"><i class="fas fa-user-graduate"></i> <span> Dashboard</span></a
+                     </li>
+                     <li class="submenu {% active_link 'add_fin' 'active' %} {% active_link 'view_fin' 'active' %}" >
+                        <a href="#"><i class="fas fa-user-graduate"></i> <span> Finance</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                           <li><a href="{% url 'add_fin' %}">Add Finance Member</a></li>
+                           <li><a href="{% url 'view_fin' %}">View Finance </a></li>
+                           <li><a href="#">Send Notification</a></li>
+
+                        </ul>
+                     </li>
+                     <li class="submenu {% active_link 'add_sale' 'active' %} {% active_link 'view_sale' 'active' %}
+                                   {% active_link 'add_lead' 'active' %} {% active_link 'view_lead' 'active' %}">
+                        <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Sales</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li><a href="{% url 'add_sale' %}">Add Sales Person</a></li>
+                            <li><a href="{% url 'view_sale' %}">View Sales Person</a></li>
+                            <li><a href="{% url 'add_lead' %}">Add Leads</a></li>
+                            <li><a href="{% url 'view_lead' %}">View Leads</a></li>
+                            <li><a href="#">Send Notification</a></li>
+                        </ul>
+                     </li>
+                     <li class="submenu {% active_link 'add_hr' 'active' %} {% active_link 'view_hr' 'active' %}">
+                        <a href="#"><i class="fas fa-building"></i> <span> HR</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li><a href="{% url 'add_hr' %}">Add</a></li>
+                           <li><a href="{% url 'view_hr' %}">View</a></li>
+                            <li><a href="#">Send Notification</a></li>
+                        </ul>
+                     </li>
+                     <li class="submenu {% active_link 'add_support' 'active' %} {% active_link 'view_support' 'active' %}">
+                        <a href="#"><i class="fas fa-book-reader"></i> <span> Support</span> <span class="menu-arrow"></span></a>
+                           <ul><li><a href="{% url 'add_support' %}">Add Support Staff</a></li>
+                           <li><a href="{% url 'view_support' %}">View Support</a></li>
+                           <li><a href="#">Send Notification</a></li>
+                        </ul>
+                     </li>
+                     <li >
+                        <a href="#"><i class="fa fa-road"></i> <span>View Routes</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li><a href="{% url 'view_direct' %}">Direct</a></li>
+                            <li><a href="{% url 'view_local_direct' %}">Local Direct</a></li>
+                           <li><a href="{% url 'view_sid' %}">SID</a></li>
+                        </ul>
+                     </li>
+                     <li>
+                        <a href="#"><i class="fas fa-holly-berry"></i> <span> View Attendance </span></a>
+                     </li>
+                     <li>
+                        <a href="#"><i class="fas fa-holly-berry"></i> <span>Leave</span></a>
+                     </li>
+                     <li>
+                        <a href="{% url 'logout' %}"><i class="fas fa-holly-berry"></i> <span>Logout</span></a>
+                     </li>
+                  </ul>
+                  {% elif user.user_type == '2' %}
+                  <ul>
+                     <li class="menu-title">
+                        <span>Main Menu</span>
+                     </li>
+                     <li class="{% active_link 'hod_home' 'active' %}">
+                        <a href="{% url 'hod_home' %}"><i class="fas fa-box"></i> <span> Dashboard</span></a>
+                     </li>
+                     <li >
+                        <a href="#"><i class="fa fa-road"></i> <span>Add Routes</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li><a href="{% url 'add_direct' %}">Direct</a></li>
+                            <li><a href="{% url 'add_local_direct' %}">Local Direct</a></li>
+                           <li><a href="{% url 'add_sid' %}">SID</a></li>
+                        </ul>
+                     </li>
+                     <li >
+                        <a href="#"><i class="fa fa-road"></i> <span>View Routes</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li><a href="{% url 'view_direct' %}">Direct</a></li>
+                            <li><a href="{% url 'view_local_direct' %}">Local Direct</a></li>
+                           <li><a href="{% url 'view_sid' %}">SID</a></li>
+                        </ul>
+                     </li>
+                     <li >
+                        <a href="#"><i class="fas fa-dollar-sign"></i> <span>Credits</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li><a href="{% url 'credit_notification' %}">Add Credits Notification</a></li>
+                            <li><a href="{% url 'fin_receive_notification' %}">Received Notification</a></li>
+                        </ul>
+                     </li>
+                     <li class="{% active_link 'hod_home' 'active' %}">
+                        <a href="{% url 'hod_home' %}"><i class="fa fa-home"></i> <span>Apply Leave</span></a>
+                     </li>
+
+                     <li class="{% active_link 'hod_home' 'active' %}">
+                        <a href="{% url 'hod_home' %}"><i class="fa fa-key"></i> <span>Logout</span></a>
+                     </li>
+                  </ul>
+
+                  {% elif user.user_type == '3' %}
+                  <ul>
+                     <li class="menu-title">
+                        <span>Main Menu</span>
+                     </li>
+                     <li >
+                        <a href="{% url 'hod_home' %}"><i class="fas fa-box"></i> <span> Dashboard</span></a>
+                     </li>
+                     <li class="{% active_link 'view_leads' 'active' %}">
+                        <a href="{% url 'view_leads' %}"><i class="fas fa-address-card"></i> <span> View Leads</span></a>
+                     </li>
+                     <li >
+                        <a href="#"><i class="fas fa-dollar-sign"></i> <span>Credits</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li><a href="{% url 'cred_notification' %}">Add Credits Notification</a></li>
+                            <li><a href="{% url 'sale_receive_notification' %}">Received Notification</a></li>
+                        </ul>
+                     </li>
+                     <li >
+                        <a href="{% url 'apply_leave' %}"><i class="fa fa-home"></i> <span>Apply Leave</span></a>
+
+                     </li>
+
+                     <li>
+                        <a href="{% url 'hod_home' %}"><i class="fa fa-key"></i> <span>Logout</span></a>
+                     </li>
+                  </ul>
+                  {% elif user.user_type == '4' %}
+
+                  {% else  %}
+                  <ul>
+                     <li class="menu-title">
+                        <span>Main Menu</span>
+                     </li>
+                     <li >
+                        <a href="{% url 'hod_home' %}"><i class="fas fa-box"></i> <span> Dashboard</span></a>
+                     </li>
+                     <li class="{% active_link 'view_leads' 'active' %}">
+                        <a href="{% url 'view_leads' %}"><i class="fas fa-address-card"></i> <span> View Leads</span></a>
+                     </li>
+                     <li >
+                        <a href="#"><i class="fas fa-dollar-sign"></i> <span>Credits</span> <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li><a href="{% url 'su_cred_notification' %}">Add Credits Notification</a></li>
+                            <li><a href="{% url 'su_receive_notification' %}">Received Notification</a></li>
+                        </ul>
+                     </li>
+                     <li >
+                        <a href="{% url 'hod_home' %}"><i class="fa fa-home"></i> <span>Apply Leave</span></a>
+
+                     </li>
+                     <li>
+                        <a href="#"><i class="fas fa-bell"></i> <span>Notification</span></a>
+                     </li>
+                     <li>
+                        <a href="{% url 'hod_home' %}"><i class="fa fa-key"></i> <span>Logout</span></a>
+                     </li>
+                  </ul>
+                  {% endif %}
+               </div>
+            </div>
+</div>
