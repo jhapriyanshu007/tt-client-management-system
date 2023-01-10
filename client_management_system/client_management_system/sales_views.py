@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
-from taggapp.models import Finance,Sales, HR, Support, CustomUser, Leads, Send_Fin_Notification,Send_Support_Notification,Send_Sale_Notification,Send_Hr_Notification
+from taggapp.models import Finance,Sales, HR, Support, CustomUser, Leads, Send_Fin_Notification,Send_Support_Notification,Send_Sale_Notification,Send_Hr_Notification,Sales_leave
+
 from django.contrib import messages
 
 def HOME(request):
@@ -113,5 +114,30 @@ def SALE_MARK_AS_DONE(request,status):
     return redirect('sale_receive_notification')
 
 
-def APPLY_LEAVE(request):
-    return render(request, 'sales/apply_leave.html')
+def SALE_APPLY_LEAVE(request):
+    sale = Sales.objects.filter(admin = request.user.id)
+    for i in sale:
+        sale_id = i.id
+        sale_leave_history = Sales_leave.objects.filter(sale_id = sale_id)
+        context = {
+            'sale_leave_history':sale_leave_history,
+        }
+        return render(request, 'sales/sale_apply_leave.html', context)
+
+
+def SALE_LEAVE_SAVE(request):
+    if request.method == "POST":
+        leave_date = request.POST.get('leave_date')
+        leave_reason = request.POST.get('leave_reason')
+
+        sales = Sales.objects.get(admin = request.user.id)
+
+        leave = Sales_leave(
+            sale_id = sales,
+            date = leave_date,
+            reason = leave_reason,
+        )
+
+        leave.save()
+        messages.success(request, "Leave Successfully Applied!")
+        return redirect('sale_apply_leave')

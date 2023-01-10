@@ -64,6 +64,14 @@ urlpatterns = [
                   path('hod/send_notification', hod_views.SEND_NOTIFICATION, name='send_notification'),
                   path('hod/save_notification', hod_views.SAVE_NOTIFICATION, name='save_notification'),
 
+                  path('hod/sale_leave_view', hod_views.SALE_LEAVE_VIEW, name='sale_leave_view'),
+                  path('hod/sale_approve_leave/<str:id>', hod_views.SALE_APPROVE_LEAVE, name='sale_approve_leave'),
+                  path('hod/sale_disapprove_leave/<str:id>', hod_views.SALE_DISAPPROVE_LEAVE, name='sale_disapprove_leave'),
+
+                  path('hod/support_leave_view', hod_views.SUPPORT_LEAVE_VIEW, name='support_leave_view'),
+                  path('hod/support_approve_leave/<str:id>', hod_views.SUPPORT_APPROVE_LEAVE, name='support_approve_leave'),
+                  path('hod/support_disapprove_leave/<str:id>', hod_views.SUPPORT_DISAPPROVE_LEAVE, name='support_disapprove_leave'),
+
                   # This is fin url
                   path('fin/home', finance_views.HOME, name='fin_home'),
 
@@ -101,13 +109,18 @@ urlpatterns = [
                   path('sale/sale_receive_notification', sales_views.SALE_RECEIVE_NOTIFICATION, name='sale_receive_notification'),
                   path('sale/sale_save_notification', sales_views.SALE_SAVE_NOTIFICATION, name='sale_save_notification'),
                   path('sale/sale_mark_as_done/<str:status>', sales_views.SALE_MARK_AS_DONE, name='sale_mark_as_done'),
-                  path('sale/apply_leave', sales_views.APPLY_LEAVE, name='apply_leave'),
+                  path('sale/apply_leave', sales_views.SALE_APPLY_LEAVE, name='sale_apply_leave'),
+                  path('sale/apply_leave_save_sale', sales_views.SALE_LEAVE_SAVE, name='sale_leave_save'),
 
                   # This is support url
                   path('support/home', support_views.HOME, name='support_home'),
                   path('support/su_receive_notification', support_views.RECEIVE_NOTIFICATION, name='su_receive_notification'),
                   path('support/su_cred_notification', support_views.SU_CRED_NOTIFICATION, name='su_cred_notification'),
                   path('support/support_save_notification', support_views.SUPPORT_SAVE_NOTIFICATION, name='support_save_notification'),
-                  path('support/mark_su_done/<str:status>', support_views.SUPPORT_MARK_AS_DONE, name='mark_su_done')
+                  path('support/mark_su_done/<str:status>', support_views.SUPPORT_MARK_AS_DONE, name='mark_su_done'),
+                  path('support/support_apply_leave', support_views.SUPPORT_APPLY_LEAVE, name='support_apply_leave'),
+                  path('support/apply_leave_save_support', support_views.SUPPORT_LEAVE_SAVE, name='support_leave_save'),
+
+
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

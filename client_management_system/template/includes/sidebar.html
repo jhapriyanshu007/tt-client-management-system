@@ -10,14 +10,15 @@
                         <span>Main Menu</span>
                      </li>
                      <li class="{% active_link 'hod_home' 'active' %}">
-                        <a href="{% url 'hod_home' %}"><i class="fas fa-user-graduate"></i> <span> Dashboard</span></a
+                        <a href="{% url 'hod_home' %}"><i class="fas fa-user-graduate"></i> <span> Dashboard</span></a>
                      </li>
                      <li class="submenu {% active_link 'add_fin' 'active' %} {% active_link 'view_fin' 'active' %}" >
-                        <a href="#"><i class="fas fa-user-graduate"></i> <span> Finance</span> <span class="menu-arrow"></span></a>
+                        <a href="#"><i class="fas fa-hand-holding-usd"></i> <span> Finance</span> <span class="menu-arrow"></span></a>
                         <ul>
-                           <li><a href="{% url 'add_fin' %}">Add Finance Member</a></li>
-                           <li><a href="{% url 'view_fin' %}">View Finance </a></li>
-                           <li><a href="#">Send Notification</a></li>
+                           <li><a href="{% url 'add_fin' %}"><i class='fas fa-hand-holding-usd'></i><span> Add Finance</span></a></li>
+                           <li><a href="{% url 'view_fin' %}"><i class='fas fa-hand-holding-usd'></i><span> View Finance</span></a></li>
+                           <li><a href="#"><i class="fa fa-bell" aria-hidden="true"></i><span> Send Notification</span></a></li>
+                            <li><a href="#"><i class="fa fa-home"></i><span> Leave</span></a></li>
 
                         </ul>
                      </li>
@@ -25,11 +26,12 @@
                                    {% active_link 'add_lead' 'active' %} {% active_link 'view_lead' 'active' %}">
                         <a href="#"><i class="fas fa-chalkboard-teacher"></i> <span> Sales</span> <span class="menu-arrow"></span></a>
                         <ul>
-                            <li><a href="{% url 'add_sale' %}">Add Sales Person</a></li>
-                            <li><a href="{% url 'view_sale' %}">View Sales Person</a></li>
-                            <li><a href="{% url 'add_lead' %}">Add Leads</a></li>
-                            <li><a href="{% url 'view_lead' %}">View Leads</a></li>
-                            <li><a href="#">Send Notification</a></li>
+                            <li><a href="{% url 'add_sale' %}"><i class="fas fa-chalkboard-teacher"></i> <span>Add Sales Person</span></a></li>
+                            <li><a href="{% url 'view_sale' %}"><i class="fas fa-chalkboard-teacher"></i> <span>View Sales Person</span></a></li>
+                            <li><a href="{% url 'add_lead' %}"><i class="fa fa-user" aria-hidden="true"></i> <span>Add Leads</span></a></li>
+                            <li><a href="{% url 'view_lead' %}"><i class="fa fa-user" aria-hidden="true"></i> <span>View Leads</span></a></li>
+                            <li><a href="#"><i class="fa fa-bell" aria-hidden="true"></i><span> Send Notification</span></a></li>
+                              <li><a href="{% url 'sale_leave_view' %}"><i class="fa fa-home"></i><span> Leave</span></a></li>
                         </ul>
                      </li>
                      <li class="submenu {% active_link 'add_hr' 'active' %} {% active_link 'view_hr' 'active' %}">
@@ -38,6 +40,7 @@
                             <li><a href="{% url 'add_hr' %}">Add</a></li>
                            <li><a href="{% url 'view_hr' %}">View</a></li>
                             <li><a href="#">Send Notification</a></li>
+                              <li><a href="#"><i class="fa fa-home"></i><span> Leave</span></a></li>
                         </ul>
                      </li>
                      <li class="submenu {% active_link 'add_support' 'active' %} {% active_link 'view_support' 'active' %}">
@@ -45,14 +48,15 @@
                            <ul><li><a href="{% url 'add_support' %}">Add Support Staff</a></li>
                            <li><a href="{% url 'view_support' %}">View Support</a></li>
                            <li><a href="#">Send Notification</a></li>
+                            <li><a href="{% url 'support_leave_view' %}"><i class="fa fa-home"></i><span> Leave</span></a></li>
                         </ul>
                      </li>
                      <li >
                         <a href="#"><i class="fa fa-road"></i> <span>View Routes</span> <span class="menu-arrow"></span></a>
                         <ul>
-                            <li><a href="{% url 'view_direct' %}">Direct</a></li>
-                            <li><a href="{% url 'view_local_direct' %}">Local Direct</a></li>
-                           <li><a href="{% url 'view_sid' %}">SID</a></li>
+                            <li><a href="{% url 'view_direct' %}"><i class="fa fa-road"></i> <span>Direct</span></a></li>
+                            <li><a href="{% url 'view_local_direct' %}"><i class="fa fa-road"></i> <span>Local Direct</span></a></li>
+                           <li><a href="{% url 'view_sid' %}"><i class="fa fa-road"></i> <span>SID</span></a></li>
                         </ul>
                      </li>
                      <li>
@@ -124,7 +128,7 @@
                         </ul>
                      </li>
                      <li >
-                        <a href="{% url 'apply_leave' %}"><i class="fa fa-home"></i> <span>Apply Leave</span></a>
+                        <a href="{% url 'sale_apply_leave' %}"><i class="fa fa-home"></i> <span>Apply Leave</span></a>
 
                      </li>
 
@@ -153,7 +157,7 @@
                         </ul>
                      </li>
                      <li >
-                        <a href="{% url 'hod_home' %}"><i class="fa fa-home"></i> <span>Apply Leave</span></a>
+                        <a href="{% url 'support_leave_view' %}"><i class="fa fa-home"></i><span>Apply Leave</span></a>
 
                      </li>
                      <li>

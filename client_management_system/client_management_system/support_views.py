@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from taggapp.models import Finance,Sales, HR, Support, CustomUser, Leads, Send_Fin_Notification,Send_Support_Notification,Send_Sale_Notification,Send_Hr_Notification
+from taggapp.models import Finance,Sales, HR, Support, CustomUser, Leads, Send_Fin_Notification,Send_Support_Notification,Send_Sale_Notification,Send_Hr_Notification, Support_leave
 from django.contrib import messages
 
 def HOME(request):
@@ -49,3 +49,30 @@ def SUPPORT_MARK_AS_DONE(request,status):
     notification.status = 1
     notification.save()
     return redirect('su_receive_notification')
+
+def SUPPORT_APPLY_LEAVE(request):
+    support = Support.objects.filter(admin = request.user.id)
+    for i in support:
+        support_id = i.id
+        support_leave_history = Support_leave.objects.filter(support_id = support_id)
+        context = {
+            'support_leave_history':support_leave_history,
+        }
+        return render(request, 'support/support_apply_leave.html', context)
+
+def SUPPORT_LEAVE_SAVE(request):
+    if request.method == "POST":
+        leave_date = request.POST.get('leave_date')
+        leave_reason = request.POST.get('leave_reason')
+
+        support = Support.objects.get(admin = request.user.id)
+
+        leave = Support_leave(
+            support_id = support,
+            date = leave_date,
+            reason = leave_reason,
+        )
+
+        leave.save()
+        messages.success(request, "Leave Successfully Applied!")
+        return redirect('support_apply_leave')

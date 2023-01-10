@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from taggapp.models import Finance,Sales, HR, Support, CustomUser, Leads, Send_Fin_Notification,Send_Support_Notification,Send_Sale_Notification,Send_Hr_Notification
+from taggapp.models import Finance,Sales, HR, Support, CustomUser, Leads, \
+    Send_Fin_Notification,Send_Support_Notification,Send_Sale_Notification,\
+    Send_Hr_Notification,Sales_leave,Finance_leave,Support_leave,HR_leave
 from django.contrib import messages
 
 
@@ -726,3 +728,49 @@ def SAVE_NOTIFICATION(request):
         return redirect('send_notification')
 
 
+def SALE_LEAVE_VIEW(request):
+    sale_leave = Sales_leave.objects.all()
+
+    context = {
+        'sale_leave':sale_leave,
+    }
+
+    return render(request, 'hod/sale_leave.html', context)
+
+
+def SALE_APPROVE_LEAVE(request,id):
+    leave = Sales_leave.objects.get(id = id)
+    leave.status = 1
+    leave.save()
+    return redirect('sale_leave_view')
+
+
+def SALE_DISAPPROVE_LEAVE(request,id):
+    leave = Sales_leave.objects.get(id = id)
+    leave.status = 2
+    leave.save()
+    return redirect('sale_leave_view')
+
+
+def SUPPORT_LEAVE_VIEW(request):
+    support_leave = Support_leave.objects.all()
+
+    context = {
+        'support_leave': support_leave,
+    }
+
+    return render(request, 'hod/support_leave.html', context)
+
+
+def SUPPORT_APPROVE_LEAVE(request, id):
+    leave = Support_leave.objects.get(id=id)
+    leave.status = 1
+    leave.save()
+    return redirect('support_leave_view')
+
+
+def SUPPORT_DISAPPROVE_LEAVE(request, id):
+    leave = Support_leave.objects.get(id=id)
+    leave.status = 2
+    leave.save()
+    return redirect('support_leave_view')
