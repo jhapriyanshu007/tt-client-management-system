@@ -130,7 +130,28 @@ class Leads(models.Model):
     contact_number = models.CharField(max_length=100,null=True)
     product = models.CharField(max_length=100,null=True)
     state = models.CharField(max_length=100,null=True)
+    source = models.CharField(max_length=100,null=True)
+    lead_type = models.CharField(max_length=100,null=True)
+    sale_person = models.CharField(max_length=100, null=True)
+    date = models.CharField(max_length=100,null=True)
+    address = models.CharField(max_length=100,null=True)
+    feedback = models.CharField(max_length=100,null=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    status = models.IntegerField(null=True, default=0)
+
+    def __str__(self):
+        return self.company_name
+
+class Clients(models.Model):
+    # admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    contact_person = models.CharField(max_length=100,null=True)
+    company_name = models.CharField(max_length=100,null=True)
+    email_id = models.CharField(max_length=100,null=True)
+    contact_number = models.CharField(max_length=100,null=True)
+    product = models.CharField(max_length=100,null=True)
+    state = models.CharField(max_length=100,null=True)
     lead_source = models.CharField(max_length=100,null=True)
+    lead_type = models.CharField(max_length=100,null=True)
     date = models.CharField(max_length=100,null=True)
     address = models.CharField(max_length=100,null=True)
     feedback = models.CharField(max_length=100,null=True)

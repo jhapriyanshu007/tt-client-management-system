@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from taggapp.models import Finance,Sales, HR, Support, CustomUser, Leads, Send_Fin_Notification,Send_Support_Notification,\
-    Send_Sale_Notification,Send_Hr_Notification,Direct,Local_Direct,SID
+    Send_Sale_Notification,Send_Hr_Notification,Direct,Local_Direct,SID, Finance_leave
 from django.contrib import messages
 
 def HOME(request):
@@ -286,3 +286,38 @@ def UPDATE_SID(request):
         return redirect('view_sid')
     return render(request, 'finance/edit_sid.html')
 
+def FINANCE_APPLY_LEAVE(request):
+    finance = Finance.objects.filter(admin = request.user.id)
+    for i in finance:
+        finance_id = i.id
+        finance_leave_history = Finance_leave.objects.filter(finance_id = finance_id)
+        context = {
+            'finance_leave_history':finance_leave_history,
+        }
+        return render(request, 'finance/finance_apply_leave.html', context)
+
+def FINANCE_LEAVE_SAVE(request):
+    if request.method == "POST":
+        leave_date = request.POST.get('leave_date')
+        leave_reason = request.POST.get('leave_reason')
+
+        finance = Finance.objects.get(admin = request.user.id)
+
+        leave = Finance_leave(
+            finance_id = finance,
+            date = leave_date,
+            reason = leave_reason,
+        )
+
+        leave.save()
+        messages.success(request, "Leave Successfully Applied!")
+        return redirect('finance_apply_leave')
+
+
+def ON_BOARD_REQUEST(request):
+    client = Leads.objects.filter(status=1)
+
+    context = {
+        'client':client
+    }
+    return render(request, 'finance/on_board_req.html', context)

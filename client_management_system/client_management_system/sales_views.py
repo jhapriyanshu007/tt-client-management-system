@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
-from taggapp.models import Finance,Sales, HR, Support, CustomUser, Leads, Send_Fin_Notification,Send_Support_Notification,Send_Sale_Notification,Send_Hr_Notification,Sales_leave
+from taggapp.models import Finance,Sales, HR, Support, CustomUser, Leads, Send_Fin_Notification,\
+    Send_Support_Notification,Send_Sale_Notification,Send_Hr_Notification,Sales_leave, Clients
 
 from django.contrib import messages
 
@@ -33,41 +34,45 @@ def EDIT_LEADS(request, id):
     context = {
         'leads': leads,
     }
-    return render(request, 'sales/edit_leads.html', context)
+    return render(request, 'sales/edits_leads.html', context)
 
 
-def UPDATE_LEAD(request):
+def UPDATE_SALE_LEAD(request):
     if request.method == 'POST':
         id = request.POST.get('id')
         contact_person = request.POST.get('contact_person')
         company_name = request.POST.get('company_name')
-        email = request.POST.get('email')
-        number = request.POST.get('number')
+        email_id = request.POST.get('email')
+        contact_number = request.POST.get('number')
         product = request.POST.get('product')
-        country_state = request.POST.get('country_state')
+        state = request.POST.get('state')
         source = request.POST.get('source')
-        generation_date = request.POST.get('generation_date')
+        lead_type = request.POST.get('lead_type')
+        date = request.POST.get('generation_date')
         address = request.POST.get('address')
         feedback = request.POST.get('feedback')
+        sale_person = request.POST.get('sale_person')
 
         lead = Leads(
             id=id,
             contact_person=contact_person,
             company_name=company_name,
-            email_id=email,
-            contact_number=number,
+            email_id=email_id,
+            contact_number=contact_number,
             product=product,
-            state=country_state,
-            lead_source=source,
-            date=generation_date,
+            state=state,
+            source=source,
+            lead_type=lead_type,
+            date=date,
             address=address,
             feedback=feedback,
+            sale_person=sale_person,
         )
 
         lead.save()
         messages.success(request, 'Record Are Successfully Updated')
         return redirect('view_leads')
-    return render(request, 'hod/edit_leads.html')
+    return render(request, 'hod/edits_leads.html')
 
 
 def CRED_NOTIFICATION(request):
@@ -141,3 +146,25 @@ def SALE_LEAVE_SAVE(request):
         leave.save()
         messages.success(request, "Leave Successfully Applied!")
         return redirect('sale_apply_leave')
+
+
+def ON_BOARD_CLIENT(request):
+    view = Leads.objects.filter(status=1).values()
+    context = {
+        'view': view,
+    }
+    return render(request, 'sales/on_board_cli.html', context)
+
+
+def ON_BOARD_SUCCESS(request,id):
+    board = Leads.objects.get(id=id)
+    board.status = 1
+    board.save()
+    return redirect('sale_leave_view')
+
+
+def ON_BOARD_FAILED(request,id):
+    board = Leads.objects.get(id=id)
+    board.status = 2
+    board.save()
+    return redirect('sale_leave_view')

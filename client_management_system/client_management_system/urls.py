@@ -58,7 +58,7 @@ urlpatterns = [
                   path('hod/add/lead', hod_views.ADD_LEAD, name='add_lead'),
                   path('hod/view_lead', hod_views.VIEW_LEAD, name='view_lead'),
                   path('hod/edit/lead/<str:id>', hod_views.EDIT_LEAD, name='edit_lead'),
-                  path('hod/update/lead', hod_views.UPDATE_LEAD, name='update_lead'),
+                  path('hod/update/lead', hod_views.UPDATE_LEAD, name='updates_lead'),
                   path('hod/delete/lead/<str:id>', hod_views.DELETE_LEAD, name='delete_lead'),
 
                   path('hod/send_notification', hod_views.SEND_NOTIFICATION, name='send_notification'),
@@ -72,8 +72,15 @@ urlpatterns = [
                   path('hod/support_approve_leave/<str:id>', hod_views.SUPPORT_APPROVE_LEAVE, name='support_approve_leave'),
                   path('hod/support_disapprove_leave/<str:id>', hod_views.SUPPORT_DISAPPROVE_LEAVE, name='support_disapprove_leave'),
 
+                  path('hod/finance_leave_view', hod_views.FINANCE_LEAVE_VIEW, name='finance_leave_view'),
+                  path('hod/finance_approve_leave/<str:id>', hod_views.FINANCE_APPROVE_LEAVE, name='finance_approve_leave'),
+                  path('hod/finance_disapprove_leave/<str:id>', hod_views.FINANCE_DISAPPROVE_LEAVE, name='finance_disapprove_leave'),
+
                   # This is fin url
                   path('fin/home', finance_views.HOME, name='fin_home'),
+
+                  path('fin/finance_apply_leave', finance_views.FINANCE_APPLY_LEAVE, name='finance_apply_leave'),
+                  path('fin/apply_leave_save_finance', finance_views.FINANCE_LEAVE_SAVE, name='finance_leave_save'),
 
                   path('fin/add_direct', finance_views.ADD_DIRECT_ROUTE, name='add_direct' ),
                   path('fin/view_direct', finance_views.VIEW_DIRECT, name='view_direct'),
@@ -93,6 +100,8 @@ urlpatterns = [
                   path('fin/update_sid', finance_views.UPDATE_SID, name='update_sid'),
                   path('fin/delete_sid/<str:id>', finance_views.DELETE_SID, name='delete_sid'),
 
+                  path('fin/on_board_req', finance_views.ON_BOARD_REQUEST, name='on_board_req'),
+
                   path('fin/fin_receive_notification', finance_views.FIN_RECEIVE_NOTIFICATION, name='fin_receive_notification'),
                   path('fin/fin_mark_as_done/<str:status>', finance_views.FIN_MARK_AS_DONE, name='fin_mark_as_done'),
                   path('fin/credit_notification', finance_views.CREDIT_NOTIFICATION, name='credit_notification'),
@@ -104,13 +113,16 @@ urlpatterns = [
                   # path('sale/notification', sales_views.NOTIFICATION, name='notification'),
                   path('sale/view_leads', sales_views.VIEW_LEADS, name='view_leads'),
                   path('sale/edit_leads/<str:id>', sales_views.EDIT_LEADS, name='edit_leads'),
-                  path('sale/update_lead', sales_views.UPDATE_LEAD, name='update_lead'),
+                  path('sale/update/lead', sales_views.UPDATE_SALE_LEAD, name='update_lead'),
                   path('sale/cred_notification', sales_views.CRED_NOTIFICATION, name='cred_notification'),
                   path('sale/sale_receive_notification', sales_views.SALE_RECEIVE_NOTIFICATION, name='sale_receive_notification'),
                   path('sale/sale_save_notification', sales_views.SALE_SAVE_NOTIFICATION, name='sale_save_notification'),
                   path('sale/sale_mark_as_done/<str:status>', sales_views.SALE_MARK_AS_DONE, name='sale_mark_as_done'),
                   path('sale/apply_leave', sales_views.SALE_APPLY_LEAVE, name='sale_apply_leave'),
                   path('sale/apply_leave_save_sale', sales_views.SALE_LEAVE_SAVE, name='sale_leave_save'),
+                  path('sale/on_board_client', sales_views.ON_BOARD_CLIENT, name='on_board_client'),
+                  path('sale/on_board_success/<str:id>', sales_views.ON_BOARD_SUCCESS, name='on_board_success'),
+                  path('sale/on_board_failed/<str:id>', sales_views.ON_BOARD_FAILED, name='on_board_failed'),
 
                   # This is support url
                   path('support/home', support_views.HOME, name='support_home'),

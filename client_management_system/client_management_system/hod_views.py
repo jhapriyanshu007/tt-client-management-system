@@ -606,11 +606,13 @@ def ADD_LEAD(request):
         email_id = request.POST.get('email')
         contact_number = request.POST.get('number')
         product = request.POST.get('product')
-        state = request.POST.get('country-state')
-        lead_source = request.POST.get('source')
+        state = request.POST.get('state')
+        source = request.POST.get('source')
+        lead_type = request.POST.get('lead_type')
         date = request.POST.get('generation_date')
         address = request.POST.get('address')
         feedback = request.POST.get('feedback')
+        sale_person = request.POST.get('sale_person')
 
         # if CustomUser.objects.filter(companyname=company_name).exists():
         #     messages.warning(request, 'This Company is Already Exist!')
@@ -627,10 +629,12 @@ def ADD_LEAD(request):
             contact_number=contact_number,
             product=product,
             state=state,
-            lead_source=lead_source,
+            source=source,
+            lead_type=lead_type,
             date=date,
             address=address,
             feedback=feedback,
+            sale_person=sale_person,
          )
         emp.save()
         messages.success(request, "Lead Added Successfully")
@@ -663,27 +667,31 @@ def UPDATE_LEAD(request):
         id = request.POST.get('id')
         contact_person = request.POST.get('contact_person')
         company_name = request.POST.get('company_name')
-        email = request.POST.get('email')
-        number = request.POST.get('number')
+        email_id = request.POST.get('email')
+        contact_number = request.POST.get('number')
         product = request.POST.get('product')
-        country_state = request.POST.get('country_state')
+        state = request.POST.get('state')
         source = request.POST.get('source')
-        generation_date = request.POST.get('generation_date')
+        lead_type = request.POST.get('lead_type')
+        date = request.POST.get('generation_date')
         address = request.POST.get('address')
         feedback = request.POST.get('feedback')
+        sale_person = request.POST.get('sale_person')
 
         lead = Leads(
             id=id,
             contact_person=contact_person,
             company_name=company_name,
-            email_id=email,
-            contact_number=number,
+            email_id=email_id,
+            contact_number=contact_number,
             product=product,
-            state=country_state,
-            lead_source=source,
-            date=generation_date,
+            state=state,
+            source=source,
+            lead_type=lead_type,
+            date=date,
             address=address,
             feedback=feedback,
+            sale_person=sale_person,
         )
 
         lead.save()
@@ -774,3 +782,27 @@ def SUPPORT_DISAPPROVE_LEAVE(request, id):
     leave.status = 2
     leave.save()
     return redirect('support_leave_view')
+
+
+def FINANCE_LEAVE_VIEW(request):
+    finance_leave = Finance_leave.objects.all()
+
+    context = {
+        'finance_leave': finance_leave,
+    }
+
+    return render(request, 'hod/finance_leave.html', context)
+
+
+def FINANCE_APPROVE_LEAVE(request, id):
+    leave = Finance_leave.objects.get(id=id)
+    leave.status = 1
+    leave.save()
+    return redirect('finance_leave_view')
+
+
+def FINANCE_DISAPPROVE_LEAVE(request, id):
+    leave = Finance_leave.objects.get(id=id)
+    leave.status = 2
+    leave.save()
+    return redirect('finance_leave_view')

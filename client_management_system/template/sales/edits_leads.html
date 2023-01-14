@@ -16,7 +16,7 @@
                         <div class="col-sm-12">
                         <div class="card">
                            <div class="card-body">
-                              <form method="post" action="{% url 'updates_lead' %}" >
+                              <form method="post" action="{% url 'update_lead' %}" >
                                   {% csrf_token %}
                                  <div class="row">
                                     <div class="col-12">
@@ -26,58 +26,58 @@
                                     <div class="col-12 col-sm-6">
                                        <div class="form-group">
                                           <label>Contact Person</label>
-                                          <input type="text" class="form-control" name="contact_person" value="{% for i in lead %}{{i.contact_person}}{% endfor %}">
-                                           <input type="text" class="form-control" name="id" value="{% for i in lead %}{{i.id}}{% endfor %}" hidden>
+                                          <input type="text" class="form-control" name="contact_person" value="{% for i in leads %}{{i.contact_person}}{% endfor %}" readonly>
+                                           <input type="text" class="form-control" name="id" value="{% for i in leads %}{{i.id}}{% endfor %}" hidden>
                                        </div>
                                     </div>
                                     <div class="col-12 col-sm-6">
                                        <div class="form-group">
                                           <label>Company Name</label>
-                                          <input type="text" class="form-control" name="company_name" value="{% for i in lead %}{{i.company_name}}{% endfor %}">
+                                          <input type="text" class="form-control" name="company_name" value="{% for i in leads %}{{i.company_name}}{% endfor %}">
                                        </div>
                                     </div>
                                     <div class="col-12 col-sm-6">
                                        <div class="form-group">
                                           <label>Email ID</label>
-                                          <input type="email" class="form-control" name="email" value="{% for i in lead %}{{i.email_id}}{% endfor %}">
+                                          <input type="email" class="form-control" name="email" value="{% for i in leads %}{{i.email_id}}{% endfor %}">
                                        </div>
                                     </div>
                                     <div class="col-12 col-sm-6">
 
                                        <div class="form-group">
                                           <label>Contact Number</label>
-                                          <input type="number" class="form-control" name="number" value="{% for i in lead %}{{i.contact_number}}{% endfor %}" >
+                                          <input type="number" class="form-control" name="number" value="{% for i in leads %}{{i.contact_number}}{% endfor %}" >
                                        </div>
                                     </div>
                                     <div class="col-12 col-sm-6">
                                        <div class="form-group">
                                           <label>Product</label>
-                                          <input type="text" class="form-control" name="product" value="{% for i in lead %}{{i.product}}{% endfor %}" >
+                                          <input type="text" class="form-control" name="product" value="{% for i in leads %}{{i.product}}{% endfor %}" >
                                        </div>
                                     </div>
                                     <div class="col-12 col-sm-6">
                                        <div class="form-group">
                                           <label>State</label>
-                                          <input type="text" class="form-control" name="state" value="{% for i in lead %}{{i.state}}{% endfor %}" >
+                                          <input type="text" class="form-control" name="state" value="{% for i in leads %}{{i.state}}{% endfor %}" >
                                        </div>
                                     </div>
                                     <div class="col-12 col-sm-6">
                                        <div class="form-group">
                                           <label>Lead Source</label>
-                                          <input type="text" class="form-control" name="source" value="{% for i in lead %}{{i.source}}{% endfor %}" >
+                                          <input type="text" class="form-control" name="source" value="{% for i in leads %}{{i.source}}{% endfor %}" >
                                        </div>
                                     </div>
                                      <div class="col-12 col-sm-6">
                                        <div class="form-group">
                                           <label>Lead Type</label>
-                                          <input type="text" class="form-control" name="lead_type" value="{% for i in lead %}{{i.lead_type}}{% endfor %}" >
+                                          <input type="text" class="form-control" name="lead_type" value="{% for i in leads %}{{i.lead_type}}{% endfor %}" >
                                        </div>
                                     </div>
                                     <div class="col-12 col-sm-6">
                                        <div class="form-group">
                                           <label>Date of Lead Generation</label>
                                           <div>
-                                             <input type="date" class="form-control" name="generation_date" value="{% for i in lead %}{{i.date}}{% endfor %}">
+                                             <input type="date" class="form-control" name="generation_date" value="{% for i in leads %}{{i.date}}{% endfor %}">
                                           </div>
                                        </div>
                                     </div>
@@ -85,19 +85,19 @@
                                     <div class="col-12 col-sm-6">
                                        <div class="form-group">
                                           <label>Address</label>
-                                          <textarea class="form-control" name="address">{% for i in lead %}{{i.address}}{% endfor %}</textarea>
+                                          <textarea class="form-control" name="address">{% for i in leads %}{{i.address}}{% endfor %}</textarea>
                                        </div>
                                     </div>
                                     <div class="col-12 col-sm-6">
                                        <div class="form-group">
                                           <label>Feedback</label>
-                                          <textarea class="form-control" name="feedback"> {% for i in lead %}{{i.feedback}}{% endfor %}</textarea>
+                                          <textarea class="form-control" name="feedback"> {% for i in leads %}{{i.feedback}}{% endfor %}</textarea>
                                        </div>
                                     </div>
                                     <div class="col-12 col-sm-6">
                                        <div class="form-group">
                                           <label>Sales Person</label>
-                                          <input type="text" class="form-control" name="lead_type" value="{% for i in lead %}{{i.sale_person}}{% endfor %}" >
+                                          <input type="text" class="form-control" name="lead_type" value="{% for i in leads %}{{i.sale_person}}{% endfor %}" >
                                        </div>
                                     </div>
                                     <div class="col-12">
