@@ -132,12 +132,13 @@ class Leads(models.Model):
     state = models.CharField(max_length=100,null=True)
     source = models.CharField(max_length=100,null=True)
     lead_type = models.CharField(max_length=100,null=True)
-    sale_person = models.CharField(max_length=100, null=True)
     date = models.CharField(max_length=100,null=True)
     address = models.CharField(max_length=100,null=True)
     feedback = models.CharField(max_length=100,null=True)
+    sales_person = models.CharField(max_length=100, null=True)
     updated_at = models.DateTimeField(auto_now=True)
     status = models.IntegerField(null=True, default=0)
+    on_board = models.IntegerField(null=True, default=0)
 
     def __str__(self):
         return self.company_name

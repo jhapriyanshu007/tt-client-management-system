@@ -101,6 +101,8 @@ urlpatterns = [
                   path('fin/delete_sid/<str:id>', finance_views.DELETE_SID, name='delete_sid'),
 
                   path('fin/on_board_req', finance_views.ON_BOARD_REQUEST, name='on_board_req'),
+                  path('fin/client_board/<str:id>', finance_views.CLIENT_BOARD, name='client_board'),
+                  path('fin/client_not_board/<str:id>', finance_views.CLIENT_NOT_BOARD, name='client_not_board'),
 
                   path('fin/fin_receive_notification', finance_views.FIN_RECEIVE_NOTIFICATION, name='fin_receive_notification'),
                   path('fin/fin_mark_as_done/<str:status>', finance_views.FIN_MARK_AS_DONE, name='fin_mark_as_done'),

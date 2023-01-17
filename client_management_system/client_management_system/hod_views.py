@@ -612,7 +612,7 @@ def ADD_LEAD(request):
         date = request.POST.get('generation_date')
         address = request.POST.get('address')
         feedback = request.POST.get('feedback')
-        sale_person = request.POST.get('sale_person')
+        sales_person = request.POST.get('sales_person')
 
         # if CustomUser.objects.filter(companyname=company_name).exists():
         #     messages.warning(request, 'This Company is Already Exist!')
@@ -634,7 +634,7 @@ def ADD_LEAD(request):
             date=date,
             address=address,
             feedback=feedback,
-            sale_person=sale_person,
+            sales_person=sales_person,
          )
         emp.save()
         messages.success(request, "Lead Added Successfully")
@@ -676,7 +676,7 @@ def UPDATE_LEAD(request):
         date = request.POST.get('generation_date')
         address = request.POST.get('address')
         feedback = request.POST.get('feedback')
-        sale_person = request.POST.get('sale_person')
+        sales_person = request.POST.get('sales_person')
 
         lead = Leads(
             id=id,
@@ -691,7 +691,7 @@ def UPDATE_LEAD(request):
             date=date,
             address=address,
             feedback=feedback,
-            sale_person=sale_person,
+            sales_person=sales_person,
         )
 
         lead.save()

@@ -51,9 +51,9 @@ def UPDATE_SALE_LEAD(request):
         date = request.POST.get('generation_date')
         address = request.POST.get('address')
         feedback = request.POST.get('feedback')
-        sale_person = request.POST.get('sale_person')
+        sales_person = request.POST.get('sales_person')
 
-        lead = Leads(
+        leads = Leads(
             id=id,
             contact_person=contact_person,
             company_name=company_name,
@@ -66,10 +66,10 @@ def UPDATE_SALE_LEAD(request):
             date=date,
             address=address,
             feedback=feedback,
-            sale_person=sale_person,
+            sales_person=sales_person,
         )
 
-        lead.save()
+        leads.save()
         messages.success(request, 'Record Are Successfully Updated')
         return redirect('view_leads')
     return render(request, 'hod/edits_leads.html')

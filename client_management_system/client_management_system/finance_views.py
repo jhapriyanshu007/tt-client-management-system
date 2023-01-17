@@ -321,3 +321,17 @@ def ON_BOARD_REQUEST(request):
         'client':client
     }
     return render(request, 'finance/on_board_req.html', context)
+
+
+def CLIENT_BOARD(request,id):
+   board = Leads.objects.get(id=id)
+   board.on_board = 1
+   board.save()
+   return redirect('on_board_req')
+
+
+def CLIENT_NOT_BOARD(request, id):
+    not_board = Leads.objects.get(id=id)
+    not_board.on_board = 2
+    not_board.save()
+    return redirect('on_board_req')
